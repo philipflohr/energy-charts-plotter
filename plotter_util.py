@@ -15,7 +15,7 @@ def get_plot_data(url, lang='en') -> ([],[],[],[]):
         for energy_source in enabled_sources:
             source = energy_source['key'][0][lang]
             plot_labels.append(source)
-            color_list = re.split('[\(\),]', energy_source['color'])
+            color_list = re.split('[(),]', energy_source['color'])
             plot_color.append([int(s) / 256 for s in color_list if s.isdigit()])
             values = energy_source['values']
             time_list = []
