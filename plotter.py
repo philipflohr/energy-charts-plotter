@@ -7,6 +7,7 @@ import re
 
 
 parser = argparse.ArgumentParser(description="An easy way to plot data from energy-charts.com using matplotlib...")
+parser.add_argument('--plot_lang', type=str, help="The plot language", default='en', choices=['en', 'de', 'fr', 'it'])
 parser.add_argument('--month', dest='plot_month', action='store_true')
 parser.set_defaults(plot_month=False)
 parser.add_argument('year', default=2018, type=int, help="The year. Default: 2018")
@@ -29,7 +30,7 @@ with urllib.request.urlopen(url) as url_result:
     plot_labels = []
     enabled_sources = [source for source in data if 'disabled' not in source]
     for energy_source in enabled_sources:
-        source = energy_source['key'][0]['en']
+        source = energy_source['key'][0][args['plot_lang']]
         plot_labels.append(source)
         color_list = re.split('[\(\),]', energy_source['color'])
         plot_color.append([int(s)/256 for s in color_list if s.isdigit()])
