@@ -1,7 +1,10 @@
 import argparse
+import matplotlib as mpl
 import matplotlib.pyplot as plt
 
-from plotter_util import get_url, get_plot_data
+from plotter_util import *
+
+mpl.rcParams.update(nice_fonts)
 
 parser = argparse.ArgumentParser(description="An easy way to plot data from energy-charts.com using matplotlib...")
 parser.add_argument('--plot_lang', type=str, help="The plot language", default='en', choices=['en', 'de', 'fr', 'it'])
