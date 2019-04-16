@@ -4,7 +4,7 @@ from datetime import datetime
 import re
 
 
-def get_plot_data(url, lang='en') -> ([],[],[],[]):
+def get_plot_data(url, lang='en', excluded_sources=[]) -> ([],[],[],[]):
     with urllib.request.urlopen(url) as url_result:
         data = json.loads(url_result.read().decode())
         plot_data = []
@@ -12,6 +12,7 @@ def get_plot_data(url, lang='en') -> ([],[],[],[]):
         time_data = []
         plot_labels = []
         enabled_sources = [source for source in data if 'disabled' not in source]
+        enabled_sources = [source for source in enabled_sources if not source['key'][0][lang] in excluded_sources]
         for energy_source in enabled_sources:
             source = energy_source['key'][0][lang]
             plot_labels.append(source)

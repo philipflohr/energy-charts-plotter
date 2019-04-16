@@ -1,8 +1,11 @@
 import matplotlib.pyplot as plt
 from plotter_util import *
 
+excluded_sources = ['Hydro Power', 'Biomass', 'Uranium', 'Brown Coal', 'Hard Coal', 'Gas', 'Others', 'Pumped Storage',
+                    'Seasonal Storage', 'Oil']
+
 url = get_url(2018,4,False)
-time, data, legend, colors = get_plot_data(url)
+time, data, legend, colors = get_plot_data(url, excluded_sources=excluded_sources)
 
 plt.style.use('seaborn')
 width = 345
