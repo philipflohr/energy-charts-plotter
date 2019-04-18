@@ -3,8 +3,25 @@ import urllib.request
 from datetime import datetime
 import re
 
+def get_usage(url) -> ([],[]):
+    with urllib.request.urlopen(url) as url_result:
+        data = json.loads(url_result.read().decode())
+        plot_data = []
+        time_data = []
+        data_dict = {}
+        import_data = [source for source in data if 'disabled' in source][0]
+        for (time, value) in import_data['values']:
+            data_dict[time] = value
+        enabled_sources = [source for source in data if not 'disabled' in source]
+        for energy_source in enabled_sources:
+            for (time, value) in energy_source['values']:
+                data_dict[time] += value
+        for key, value in data_dict.items():
+            plot_data.append(value)
+            time_data.append(datetime.fromtimestamp(time / 1000))
+        return time_data, plot_data
 
-def get_plot_data(url, lang='en', excluded_sources=[]) -> ([],[],[],[]):
+def get_plot_data(url, lang='en', excluded_sources=[], include_usage=False) -> ([],[],[],[]):
     with urllib.request.urlopen(url) as url_result:
         data = json.loads(url_result.read().decode())
         plot_data = []
