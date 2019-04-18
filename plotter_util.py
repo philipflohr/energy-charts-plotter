@@ -52,6 +52,7 @@ def get_url(year: int, index: int, plot_month: bool) -> str:
         url += 'month_' + str(year) + '_' + str(index).zfill(2) + '.json'
     else:
         url += 'week_' + str(year) + '_' + str(index).zfill(2) + '.json'
+    print(url)
     return url
 
 def set_size(width, fraction=1):
