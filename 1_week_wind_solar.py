@@ -1,15 +1,15 @@
+import matplotlib as mpl
 import matplotlib.pyplot as plt
 from plotter_util import *
 
-plt.style.use('seaborn')
-width = 345
-print(set_size(width))
+mpl.rcParams.update(nice_fonts)
+
 #plt.xkcd()
 fig, (ax, ax2) = plt.subplots(1, 2, figsize=(6.3, 4), sharex=False, sharey=True)
 fig.suptitle("Produced electricity in Germany after fuels: Wind and Solar only")
-
 excluded_sources = ['Hydro Power', 'Biomass', 'Uranium', 'Brown Coal', 'Hard Coal', 'Gas', 'Others', 'Pumped Storage',
                     'Seasonal Storage', 'Oil']
+
 
 url = get_url(2018, 4, False)
 time, data, legend, colors = get_plot_data(url, excluded_sources=excluded_sources)
@@ -41,7 +41,6 @@ ax2.set_ylabel("Produced electricity in GW")
 for tick in ax2.get_xticklabels():
     tick.set_rotation(45)
 
-plt.grid(True)
 plt.savefig("test.pdf", format='pdf', bbox_inches='tight')
 
 print("Test")

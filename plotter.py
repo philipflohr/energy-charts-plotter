@@ -14,7 +14,6 @@ parser.add_argument('year', default=2018, type=int, help="The year. Default: 201
 parser.add_argument('index', default=1, type=int, help="The index. (week n / month n) Default: 1")
 parser.add_argument('-e', '--exclude', action='append', help='Exclude this sources from plotting', required=False)
 args = vars(parser.parse_args())
-print()
 
 plt.ylabel("Produced electricity in GW")
 
