@@ -3,7 +3,8 @@ A python tool to convert data from the https://energy-charts.de homepage to pdf 
 
 For now only the production chart is supported
 
-#Currently nonfunctional
+## Currently nonfunctional
+
 **Since the relaunch of the website, this tool is non-fcuntional.**
 It's likely easy to adapt to the new structure of the website. 
 As the site is now offering an export functionality this adaptation will likely not be done - at least not by me. 
